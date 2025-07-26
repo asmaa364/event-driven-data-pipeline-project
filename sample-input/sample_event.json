@@ -1,5 +1,14 @@
-{
-  "user": "asma",
-  "timestamp": "2025-07-26T10:30:00Z",
-  "event": "file_uploaded"
-}
+[
+  {
+    "event_id": "001",
+    "message": "User signed in"
+  },
+  {
+    "event_id": "002",
+    "message": "Order placed"
+  },
+  {
+    "event_id": "003",
+    "message": "Email sent"
+  }
+]

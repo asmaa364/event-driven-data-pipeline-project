@@ -1,24 +1,24 @@
-import datetime
 import json
 import os
+from datetime import datetime
 
 def generate_report():
-    today = datetime.date.today().isoformat()
-    input_dir = "sample-input"
-    output_file = f"reports/summary-{today}.txt"
+    input_file = 'sample-input/events.json'
+    output_dir = 'reports'
+    os.makedirs(output_dir, exist_ok=True)
 
-    if not os.path.exists("reports"):
-        os.makedirs("reports")
+    output_file = os.path.join(output_dir, 'summary-' + datetime.now().strftime('%Y-%m-%d') + '.txt')
+
+    with open(input_file, 'r') as f:
+        data_list = json.load(f)
 
     summary = []
+    for data in data_list:
+        event_id = data.get('event_id', 'N/A')
+        message = data.get('message', 'No message')
+        summary.append(f"{event_id}: {message}")
 
-    for filename in os.listdir(input_dir):
-        if filename.endswith(".json"):
-            with open(os.path.join(input_dir, filename)) as f:
-                data = json.load(f)
-                summary.append(f"{data['event_id']}: {data['message']}")
-
-    with open(output_file, "w") as f:
+    with open(output_file, 'w') as f:
         f.write("\n".join(summary))
 
     print(f"✅ Report generated: {output_file}")
