@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing dependencies
+  build:
+    commands:
+      - echo Running report generator
+      - python scripts/generate_report.py
+
+artifacts:
+  files:
+    - report.html
