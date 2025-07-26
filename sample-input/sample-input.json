@@ -1,3 +1,5 @@
-{"event_id": "evt1", "message": "User signed up"}
-{"event_id": "evt2", "message": "File uploaded"}
-{"event_id": "evt3", "message": "Report generated"}
+[
+  { "event_id": "evt1", "message": "User signed up" },
+  { "event_id": "evt2", "message": "File uploaded" },
+  { "event_id": "evt3", "message": "Report generated" }
+]

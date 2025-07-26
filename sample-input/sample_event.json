@@ -1,0 +1,14 @@
+[
+  {
+    "event_id": "001",
+    "message": "User signed in"
+  },
+  {
+    "event_id": "002",
+    "message": "Order placed"
+  },
+  {
+    "event_id": "003",
+    "message": "Email sent"
+  }
+]

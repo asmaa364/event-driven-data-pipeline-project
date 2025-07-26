@@ -1,12 +1,11 @@
 version: 0.2
 
 phases:
-  install:
-    commands:
-      - echo "Installing dependencies"
   build:
     commands:
-      - echo "Build step running"
-  post_build:
-    commands:
-      - echo "Post build step"
+      - echo "Running generate_report.py"
+      - python scripts/generate_report.py sample-input/sample-input.json report-template.html > output.html
+
+artifacts:
+  files:
+    - output.html

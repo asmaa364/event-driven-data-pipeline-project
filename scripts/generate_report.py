@@ -1,38 +1,15 @@
-import os
 import json
-from datetime import datetime
+import sys
 
-INPUT_FILE = "sample-input/input.jsonl"
-REPORT_FILE = "reports/daily_report.txt"
+input_file = sys.argv[1]
+template_file = sys.argv[2]
 
-def create_sample_input():
-    os.makedirs(os.path.dirname(INPUT_FILE), exist_ok=True)
-    if not os.path.exists(INPUT_FILE):
-        print("Creating sample input.jsonl file...")
-        with open(INPUT_FILE, "w") as f:
-            f.write('{"event_id": "evt1", "message": "User signed up"}\n')
-            f.write('{"event_id": "evt2", "message": "File uploaded"}\n')
-            f.write('{"event_id": "evt3", "message": "Report generated"}\n')
+with open(input_file) as f:
+    events = json.load(f)
 
-def generate_report():
-    create_sample_input()
-    summary = []
+with open(template_file) as f:
+    template = f.read()
 
-    with open(INPUT_FILE, "r") as infile:
-        for line in infile:
-            try:
-                data = json.loads(line.strip())
-                event_id = data.get("event_id", "N/A")
-                message = data.get("message", "No message")
-                summary.append(f"{event_id}: {message}")
-            except json.JSONDecodeError:
-                continue
+output = template.replace("{{ event_count }}", str(len(events)))
 
-    os.makedirs(os.path.dirname(REPORT_FILE), exist_ok=True)
-
-    with open(REPORT_FILE, "w") as outfile:
-        outfile.write(f"Daily Report - {datetime.now()}\n")
-        outfile.write("\n".join(summary))
-
-if __name__ == "__main__":
-    generate_report()
+print(output)
